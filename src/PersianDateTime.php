@@ -2,9 +2,10 @@
 
 namespace Aloko\PersianDatepicker;
 
-use Laravel\Nova\Fields\Field;
+use Closure;
 use Exception;
 use DateTimeInterface;
+use Laravel\Nova\Fields\Field;
 
 class PersianDateTime extends Field
 {
@@ -45,14 +46,21 @@ class PersianDateTime extends Field
         return $this->withMeta(['format' => $format]);
     }
 
-    
     /**
-     * Indicate that the date field is nullable.
+     * Indicate that the field should be nullable.
      *
+     * @param  bool $nullable
+     * @param  array|Closure $values
      * @return $this
      */
-    public function nullable()
+    public function nullable($nullable = true, $values = null)
     {
+        $this->nullable = $nullable;
+
+        if ($values !== null) {
+            $this->nullValues($values);
+        }
+
         return $this->withMeta(['nullable' => true]);
     }
 }
