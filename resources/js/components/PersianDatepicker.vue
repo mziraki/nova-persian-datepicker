@@ -61,7 +61,8 @@ export default {
                     },
                     enabled: this.fieldType == 'datetime'
                 },
-                onSelect: this.onDatepickerChange
+                onSelect: this.onDatepickerChange,
+				position: [this.fieldType == 'datetime' ? -341 : -270, 0]
             })
         })
     },
